@@ -13,7 +13,7 @@ Get the latest version from **[Releases](../../releases/latest)**:
 
 1. Download `WFMarketWatcher-<version>.exe` and `images.zip`.
 2. Put the exe in its own folder and unzip `images` next to it.
-3. Start the exe and set up Discord in ⚙ Settings (optional).
+3. Start the exe. On its first start it moves itself to `WFMarketWatcher.exe` and restarts once. Set up Discord in ⚙ Settings if you want alerts there.
 
 Windows SmartScreen may warn about an unknown app the first time. Click *More info → Run anyway*.
 
@@ -21,7 +21,9 @@ Requires Windows 10 or 11 with the Microsoft Edge WebView2 runtime (always there
 
 ## Updates
 
-The app checks this repository for new releases and shows **Update available** in the top bar. **Update now** downloads the new version next to the old one, checks it against its published SHA-256 checksum and starts it. Older versions stay in the folder, so you can always go back by starting an older exe.
+The app checks this repository for new releases and shows **Update x.y.z** in the top bar. **Update now** downloads the new version and checks it against its published SHA-256 checksum. If it matches, it replaces `WFMarketWatcher.exe` and restarts; if not, nothing changes. Your settings and data stay, and shortcuts keep working.
+
+Every version stays available here under [Releases](../../releases), in case you ever want an older one.
 
 ## Your data
 
