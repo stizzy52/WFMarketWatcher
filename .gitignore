@@ -20,3 +20,6 @@ source/build.log
 # Cached set parts (Opportunities)
 sets_cache.json
 backups/
+
+# Relic reward screenshots (Settings > Relic rewards > Keep all screenshots)
+screenshots/
