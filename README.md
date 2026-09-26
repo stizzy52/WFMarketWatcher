@@ -1,3 +1,5 @@
+**⚠️ Disclaimer: This software was made for me and my friends. It has not been checked for compliance with the Terms of Service of Warframe or warframe.market. Every user uses it at their own risk and bears the risk of any punishment, including suspensions and bans.**
+
 # WFMarketWatcher
 
 A Windows app that watches [warframe.market](https://warframe.market) for sell orders at or below your price and alerts you in the app (sound and Windows notification) and in Discord, with a ready-to-paste whisper message.
@@ -5,6 +7,8 @@ A Windows app that watches [warframe.market](https://warframe.market) for sell o
 - Price limits in plat or as a % under the average price
 - Rank and variant filters, lists, pause
 - Price charts, purchase log and profit share cards
+- Opportunities: flips (buyers paying more than sellers ask) and sets vs parts
+- Share watchlists with a code; back up and restore your data; export purchases as CSV
 - Discord webhook or bot with Bought / Gone / Whisper buttons
 
 ## Download
@@ -27,4 +31,8 @@ Every version stays available here under [Releases](../../releases), in case you
 
 ## Your data
 
-Your settings (including your Discord webhook or bot token), purchases and history are stored in files next to the exe and never leave your PC. **Don't share your `config.json`.**
+Your settings (including your Discord webhook or bot token), purchases and history are stored in files next to the exe and never leave your PC. **Don't share your `config.json` or your backups.** Watchlist codes contain only items and limits, so those are safe to share.
+
+---
+
+**⚠️ Disclaimer: This software was made for me and my friends. It has not been checked for compliance with the Terms of Service of Warframe or warframe.market. Every user uses it at their own risk and bears the risk of any punishment, including suspensions and bans.**
