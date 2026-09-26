@@ -1,5 +1,7 @@
 **⚠️ Disclaimer: This software was made for me and my friends. It has not been checked for compliance with the Terms of Service of Warframe or warframe.market. Every user uses it at their own risk and bears the risk of any punishment, including suspensions and bans.**
 
+**The relic reward overlay doesn't work in exclusive fullscreen.** Play Warframe in *Borderless Fullscreen* or *Windowed*. In exclusive fullscreen the game draws straight to the monitor and bypasses the Windows desktop, so no window can be shown on top of it and screenshots often come out black. Overlays like Steam's or Discord's get around this by injecting code into the game; WFMarketWatcher deliberately doesn't.
+
 # WFMarketWatcher
 
 A Windows app that watches [warframe.market](https://warframe.market) for sell orders at or below your price and alerts you in the app (sound and Windows notification) and in Discord, with a ready-to-paste whisper message.
@@ -7,6 +9,7 @@ A Windows app that watches [warframe.market](https://warframe.market) for sell o
 - Price limits in plat or as a % under the average price
 - Rank and variant filters, lists, pause
 - Price charts, purchase log and profit share cards
+- Relic reward prices shown below the reward cards (optional, read-only)
 - Opportunities: flips (buyers paying more than sellers ask) and sets vs parts
 - Share watchlists with a code; back up and restore your data; export purchases as CSV
 - Discord webhook or bot with Bought / Gone / Whisper buttons
@@ -22,6 +25,26 @@ Get the latest version from **[Releases](../../releases/latest)**:
 Windows SmartScreen may warn about an unknown app the first time. Click *More info → Run anyway*.
 
 Requires Windows 10 or 11 with the Microsoft Edge WebView2 runtime (always there on Windows 11).
+
+## Relic reward prices (optional, off by default)
+
+When the relic reward screen opens, the app shows a box below each reward card with its price. Turn it on in ⚙ Settings → **Relic rewards**; set your Warframe **HUD scale** there (Options → Interface → HUD Scale) and play in *Borderless* or *Windowed*.
+
+**What it watches for.** It reads Warframe's log file, `%LOCALAPPDATA%\Warframe\EE.log`, opened read-only, and waits for these two lines:
+- `ProjectionRewardChoice.lua: Got rewards`: the reward cards are shown, so the prices appear.
+- `ProjectionRewardChoice.lua: Relic reward screen shut down`: the screen closed, so the prices disappear.
+
+Optionally a hotkey (e.g. `ctrl+F9`) triggers it by hand instead.
+
+**What it reads, and how it's used:**
+1. A screenshot of **only the reward-card row**, taken with Windows' normal screen capture.
+2. Windows' built-in text recognition reads the item names **on your PC**. It works with any Warframe UI theme colour.
+3. The names are matched to warframe.market items, and **only those item names** are used to look up prices (at most 2 requests per second).
+4. The screenshot is discarded right away, unless you turn on **Keep all screenshots**, which saves each one as a PNG in a folder you choose. Nothing is ever uploaded.
+
+**What it never does:** read or change the game's memory, inject anything into the game, modify game files, or send the game any keys or clicks. You still pick your reward yourself.
+
+The boxes can show the item name, the cheapest in-game price, the average price (1D / 1W / 1M / 3M), ducats and how many sold, each switchable, plus a **BEST** highlight by plat or ducats. Their colours, size and position are set in ⚙ Settings → **Overlay**, with **Preview on screen**. The overlay window is click-through and never takes focus from the game.
 
 ## Updates
 
