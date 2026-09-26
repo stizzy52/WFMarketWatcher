@@ -16,3 +16,7 @@ source/build/
 source/build.log
 **/__pycache__/
 *.part
+
+# Cached set parts (Opportunities)
+sets_cache.json
+backups/
