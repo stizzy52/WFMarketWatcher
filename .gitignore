@@ -1,0 +1,18 @@
+# Personal files: never commit or upload these.
+# config.json holds your Discord webhook URL / bot token.
+config.json
+config.json.broken
+purchases.json
+alerts.json
+seen_orders.json
+price_history.json
+items_cache.json
+custom_background.*
+sounds/
+.webview/
+
+# Build output
+source/build/
+source/build.log
+**/__pycache__/
+*.part
