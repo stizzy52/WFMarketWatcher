@@ -9,7 +9,7 @@ A Windows app that watches [warframe.market](https://warframe.market) for sell o
 - Price limits in plat or as a % under the average price
 - Rank and variant filters, lists, pause
 - Price charts, purchase log and profit share cards
-- Relic reward prices shown below the reward cards (optional, read-only)
+- Relic reward prices shown above the reward cards, in a layout you can edit (optional, read-only)
 - Opportunities: flips (buyers paying more than sellers ask) and sets vs parts
 - Share watchlists with a code; back up and restore your data; export purchases as CSV
 - Discord webhook or bot with Bought / Gone / Whisper buttons
@@ -28,7 +28,7 @@ Requires Windows 10 or 11 with the Microsoft Edge WebView2 runtime (always there
 
 ## Relic reward prices (optional, off by default)
 
-When the relic reward screen opens, the app shows a box below each reward card with its price. Turn it on in ⚙ Settings → **Relic rewards**; set your Warframe **HUD scale** there (Options → Interface → HUD Scale) and play in *Borderless* or *Windowed*.
+When the relic reward screen opens, the app shows a box just above each reward card with its price. Turn it on in ⚙ Settings → **Relic rewards**; set your Warframe **HUD scale** there (Options → Interface → HUD Scale) and play in *Borderless* or *Windowed*.
 
 **What it watches for.** It reads Warframe's log file, `%LOCALAPPDATA%\Warframe\EE.log`, opened read-only, and waits for these two lines:
 - `ProjectionRewardChoice.lua: Got rewards`: the reward cards are shown, so the prices appear.
@@ -44,7 +44,23 @@ Optionally a hotkey (e.g. `ctrl+F9`) triggers it by hand instead.
 
 **What it never does:** read or change the game's memory, inject anything into the game, modify game files, or send the game any keys or clicks. You still pick your reward yourself.
 
-The boxes can show the item name, the cheapest in-game price, the average price (1D / 1W / 1M / 3M), ducats and how many sold, each switchable, plus a **BEST** highlight by plat or ducats. Their colours, size and position are set in ⚙ Settings → **Overlay**, with **Preview on screen**. The overlay window is click-through and never takes focus from the game.
+The boxes can show the item name, the cheapest in-game price, the average price (1D / 1W / 1M / 3M), ducats and how many sold, each switchable, plus a **BEST** highlight by plat or ducats. Their colours, size and position are set in ⚙ Settings → **Overlay**, with **Preview on screen**. **Edit layout…** opens an editor over the game with sample boxes: drag each box where you want it and drag its edges or corners to resize it (the text follows the size). Boxes snap to each other, the reward cards, the screen centre and a grid sized for your resolution; **Snapping** and **Grid** can be switched off in the editor's top bar, and holding Alt places a box freely. **Apply** saves the layout in `config.json`; **Use the default layout** goes back. The overlay window is click-through and never takes focus from the game.
+
+## Trade detection (optional, off by default)
+
+The app can notice your finished in-game trades and update itself. Turn it on in ⚙ Settings → **Trades**.
+
+**What it watches for.** It reads the same log file, `%LOCALAPPDATA%\Warframe\EE.log`, opened read-only, and waits for:
+- `Are you sure you want to accept this trade? You are offering: …`: the trade confirmation, with what you give (e.g. `Platinum x 5`), the player's name (`and will receive from <name> the following:`) and what you get.
+- `The trade was successful!`: the trade went through. A trade that's cancelled or fails changes nothing.
+
+**What it does with it:**
+- **You pay plat for items from a found deal's seller:** the deal is marked **Bought** at the plat you actually paid, the purchase is logged, and the Discord alert is updated.
+- **You pay plat for items that aren't a found deal:** they're logged as purchases (can be switched off).
+- **You trade an item you bought away for plat:** its **Sold for** is filled in.
+- With several items in one trade, the plat is split between them. Item-for-item trades are only noted in the activity log.
+
+It needs the game in English (the log texts are in the game's language) and runs on the PC that plays the game. **What it never does:** read or change the game's memory, inject anything, modify game files, or send the game keys or clicks.
 
 ## Updates
 
